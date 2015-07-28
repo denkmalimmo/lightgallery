@@ -568,13 +568,15 @@
 
             if (_srcset) {
                 _$img.attr('srcset', _srcset);
-                try {
-                    picturefill({
-                        elements: [_$img[0]]
-                    });
-                } catch (e) {
-                    console.error('Make sure you have included Picturefill version 2');
-                }
+				if(!window.HTMLPictureElement){
+					try {
+						picturefill({
+							elements: [_$img[0]]
+						});
+					} catch (e) {
+						console.error('Make sure you have included Picturefill version 2');
+					}
+				}
             }
 
             if (this.s.appendSubHtmlTo !== '.lg-sub-html') {
